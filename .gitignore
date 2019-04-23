@@ -1,0 +1,5 @@
+#Ide's
+\.idea
+
+#Defaults
+.DS_Store
