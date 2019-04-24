@@ -1,6 +1,6 @@
 <?php
 
-require_once '../classes/Connection.php';
+require 'Connection.php';
 
 abstract class EntityClients extends Connection {
 

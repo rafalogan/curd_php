@@ -1,5 +1,5 @@
 <?php
-require_once '../entity/EntityClients.php';
+require 'EntityClients.php';
 
 class Clients extends EntityClients {
     protected $Table = 'clients';
@@ -8,8 +8,8 @@ class Clients extends EntityClients {
         $sql = "INSERT INTO $this->Table (name, email) VALUES (:name, :email)";
 
         $statement = Connection::prepare($sql);
-        $statement->bindParam(':name', $this->getName());
-        $statement->bindParam(':email', $this->getEmail());
+        $statement->bindParam(':name', $this->Name);
+        $statement->bindParam(':email', $this->Email);
 
         return $statement->execute();
     }

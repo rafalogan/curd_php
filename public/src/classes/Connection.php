@@ -1,7 +1,7 @@
 <?php
-require_once '../../app/config.php';
+require_once 'config.php';
 
-class Connection {
+abstract class Connection {
     private static $instance;
 
     public static function getInstance() {

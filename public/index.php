@@ -1,3 +1,8 @@
+<?php
+    function __autoload($class) {
+        require_once 'src/classes/' . $class . '.php';
+    }
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -8,8 +13,6 @@
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="assets/materialize/css/materialize.min.css">
-    <!-- Bootstrap CSS Grids -->
-    <link rel="stylesheet" href="assets/bootstrap-4.3.1-dist/css/bootstrap-grid.min.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -19,9 +22,85 @@
     <title>Teste Crud PHP</title>
 </head>
 <body>
+    <header>
+        <div class="row">
+            <div class="col s12 center-align">
+                <h1>Crud - PHP OO</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <?php
+        $client = new Clients();
 
-    <? include '../template/header.php'?>
+        if (isset($_POST['cadastrar'])):
+            $name   = $_POST['name'];
+            $email  = $_POST['email'];
 
+            $client->setName($name);
+            $client->setEmail($email);
+            $client->insert();
+
+        endif;
+        ?>
+
+        <div id="client-form">
+            <div class="row">
+                <form  class="col s12" method="post">
+                    <div class="row">
+                        <div class="input-fileld col s12 m4">
+                            <input id="name" type="text" class="validate" name="name">
+                            <label for="name">Nome Completo</label>
+                        </div>
+                        <div class="input-fileld col s12 m4">
+                            <input id="email" type="email" class="validate" name="email">
+                            <label for="email">E-mail</label>
+                        </div>
+                        <div class="col s12 m4">
+                            <button type="submit" class="btn waves-effect btn-success">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="clients">
+            <div class="row ">
+                <div class="col s12 center-align">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-title">
+                                <h4>Todos os Clientes</h4>
+                            </div>
+                            <div>
+                                <table class="striped">
+                                    <thead>
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Menu</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>00</td>
+                                        <td>Nome Completo</td>
+                                        <td>email@email.com</td>
+                                        <td>
+                                            <button class="btn waves-effect btn-info">Editar</button>
+                                            <button class="btn waves-effect btn-danger">Apagar</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.0.slim.js" integrity="sha256-milezx5lakrZu0OP9b2QWFy1ft/UEUK6NH1Jqz8hUhQ=" crossorigin="anonymous">
     </script>
